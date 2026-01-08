@@ -181,7 +181,6 @@ class LBOModel:
 st.sidebar.markdown(f"""
 <div style="text-align: center; padding: 1.5rem; background: rgba(255,215,0,0.1); border-radius: 10px; margin-bottom: 1.5rem; border: 2px solid {COLORS['accent_gold']};">
     <h3 style="color: {COLORS['accent_gold']}; margin: 0;">{BRANDING['icon']} LBO MODEL</h3>
-    <p style="color: white; font-size: 0.85rem; margin: 5px 0;">Constraint: IF(Repay >= FCF, use FCF, use Repay)</p>
 </div>
 """, unsafe_allow_html=True)
 
