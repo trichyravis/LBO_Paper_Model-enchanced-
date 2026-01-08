@@ -335,15 +335,55 @@ def data_table(df, title="", format_currency=None):
     st.dataframe(styled_df, use_container_width=True)
 
 def footer():
-    """Create professional footer"""
+    """Create professional footer with social links"""
     footer_html = f"""
     <div class="footer-container">
         <div class="footer-title">
             {BRANDING['icon']} {BRANDING['name']}
         </div>
+        
+        <div style="margin: 20px 0;">
+            <p style="color: {COLORS['dark_blue']}; font-weight: 600; margin-bottom: 15px;">
+                Connect with {BRANDING['instructor']}
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.linkedin.com/in/trichyravis" target="_blank" style="
+                    display: inline-block;
+                    background: #0A66C2;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    transition: all 0.3s ease;
+                    border: 2px solid #0A66C2;
+                ">
+                    🔗 LinkedIn Profile
+                </a>
+                <a href="https://github.com/trichyravis/" target="_blank" style="
+                    display: inline-block;
+                    background: #333333;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    transition: all 0.3s ease;
+                    border: 2px solid #333333;
+                ">
+                    💻 GitHub Repository
+                </a>
+            </div>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid {COLORS['light_gray']}; margin: 20px 0;">
+        
         <div class="footer-credit">
             © 2026 <b>{BRANDING['instructor']}</b>. All rights reserved.<br>
-            Empowering the next generation of Finance Professionals.
+            Empowering the next generation of Finance Professionals.<br>
+            <span style="font-size: 0.85rem; color: #999;">
+                The Mountain Path - World of Finance
+            </span>
         </div>
     </div>
     """
