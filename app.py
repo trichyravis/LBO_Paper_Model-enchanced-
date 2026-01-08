@@ -124,13 +124,34 @@ def apply_mountain_path_styles():
     
     [data-testid="stSidebar"] {{
         background: linear-gradient(180deg, {COLORS['dark_blue']} 0%, {COLORS['light_blue']} 100%);
-        color: white;
+        color: white !important;
+    }}
+    
+    [data-testid="stSidebar"] * {{
+        color: white !important;
+    }}
+    
+    [data-testid="stSidebar"] label {{
+        color: white !important;
+        font-weight: 600;
     }}
     
     [data-testid="stSidebar"] h3 {{
-        color: {COLORS['accent_gold']};
+        color: {COLORS['accent_gold']} !important;
         font-weight: bold;
         letter-spacing: 1px;
+    }}
+    
+    [data-testid="stSidebar"] .stSlider {{
+        color: white !important;
+    }}
+    
+    [data-testid="stSidebar"] span {{
+        color: white !important;
+    }}
+    
+    [data-testid="stSidebar"] div {{
+        color: white !important;
     }}
     
     .header-container {{
