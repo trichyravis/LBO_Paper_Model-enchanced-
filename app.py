@@ -297,23 +297,52 @@ with tab4:
 
 # TAB 5: ANALYSIS
 with tab5:
-    st.subheader("📊 Sensitivity Analysis - Exit Multiple")
+    st.subheader("📊 Sensitivity Analysis vs Target IRR (40%)")
     
+    # Create sensitivity table
     sensitivity = []
-    for exit_m in np.arange(model.exit_multiple - 2, model.exit_multiple + 3, 1):
+    min_exit_for_target = None
+    
+    for exit_m in np.arange(max(1.0, model.exit_multiple - 3), model.exit_multiple + 5, 0.5):
         if exit_m > 0:
             exit_val = model.df.iloc[-1]['EBITDA'] * exit_m
             eq_proc = exit_val + returns['accumulated_fcf'] - returns['remaining_debt']
             m = eq_proc / model.equity if model.equity > 0 else 0
             i = (m ** (1/model.hold_years)) - 1 if m > 0 else 0
+            irr_pct = i * 100
+            
+            meets_target = i >= 0.40
+            if meets_target and min_exit_for_target is None:
+                min_exit_for_target = exit_m
+            
             sensitivity.append({
                 'Exit Multiple': f"{exit_m:.1f}x",
                 'MOIC': f"{m:.2f}x",
-                'IRR': f"{i*100:.1f}%",
-                'Status': '✅' if i >= 0.40 else '❌'
+                'IRR': f"{irr_pct:.1f}%",
+                'vs Target': f"{irr_pct - 40.0:+.1f}%",
+                'Status': '✅ GOOD' if irr_pct >= 40.0 else '❌ MISS'
             })
     
     st.dataframe(pd.DataFrame(sensitivity), use_container_width=True, hide_index=True)
+    
+    st.divider()
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        current_irr = returns['irr'] * 100
+        st.metric("Current IRR", f"{current_irr:.1f}%", delta=f"{current_irr - 40.0:+.1f}%")
+    with col2:
+        st.metric("Target IRR", "40.0%")
+    with col3:
+        if min_exit_for_target:
+            st.metric("Minimum Exit Multiple", f"{min_exit_for_target:.1f}x")
+    
+    st.divider()
+    
+    if returns['irr'] * 100 >= 40.0:
+        st.success(f"✅ DEAL MEETS TARGET - IRR of {returns['irr']*100:.1f}% exceeds 40% target")
+    else:
+        st.warning(f"⚠️ DEAL BELOW TARGET - IRR of {returns['irr']*100:.1f}% is below 40% target")
 
 st.divider()
 st.markdown(f"""
