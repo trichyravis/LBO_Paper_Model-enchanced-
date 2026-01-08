@@ -184,7 +184,98 @@ st.sidebar.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["📋 Inputs", "📊 Summary", "💰 Projections", "🎯 Returns", "📈 Analysis"])
+
+tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs(["📖 About", "📋 Inputs", "📊 Summary", "💰 Projections", "🎯 Returns", "📈 Analysis"])
+
+# TAB 0: ABOUT
+with tab0:
+    st.header("📖 About This Model")
+    
+    col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        st.markdown(f"""
+        ### **What is an LBO?**
+        
+        A **Leveraged Buyout (LBO)** is an acquisition financed primarily with debt, where the 
+        acquired company's cash flows are used to pay down the debt, creating returns through 
+        debt paydown and multiple expansion.
+        
+        ---
+        
+        ### **How It Works**
+        
+        **1. Entry**
+        - Acquire target company at Entry Multiple
+        - Finance with high leverage (typically 60-70% debt)
+        - Remaining funded with sponsor equity (30-40%)
+        
+        **2. Operations**
+        - Grow revenue and EBITDA
+        - Generate free cash flows
+        - Use FCF to repay debt (constrained by available cash)
+        
+        **3. Exit**
+        - Sell company at higher Exit Multiple
+        - Repay remaining debt
+        - Return equity investment amplified by:
+          - Debt paydown (leverage paydown return)
+          - Multiple expansion (operational improvement)
+        
+        ---
+        
+        ### **This Model Includes**
+        
+        ✅ **Entry Valuation** - Leverage analysis & capital structure  
+        ✅ **5-Year Projections** - Revenue growth, EBITDA margins, FCF  
+        ✅ **Debt Repayment** - Constrained by available free cash flow  
+        ✅ **Exit Analysis** - Enterprise value, equity proceeds, returns  
+        ✅ **Sensitivity Analysis** - vs 40% Target IRR benchmark  
+        ✅ **Deal Assessment** - Pass/fail status based on target returns  
+        
+        ---
+        
+        ### **Key Metrics**
+        
+        | Metric | Description | Target |
+        |--------|-------------|--------|
+        | **MOIC** | Equity Multiple of Invested Capital | 2.0x - 5.0x |
+        | **IRR** | Internal Rate of Return | 40%+ |
+        | **Entry Multiple** | EV / Entry EBITDA | 3.0x - 6.0x |
+        | **Exit Multiple** | EV / Exit EBITDA | 8.0x - 12.0x |
+        | **Leverage (Entry)** | Debt / Entry EBITDA | 2.0x - 3.0x |
+        | **Leverage (Exit)** | Debt / Exit EBITDA | 1.0x - 2.0x |
+        | **Hold Period** | Investment duration | 4-5 years |
+        
+        ---
+        
+        ### **How to Use This Model**
+        
+        1. **Adjust Inputs** (Tab 1) - Modify transaction, financing, and operating assumptions
+        2. **Review Summary** (Tab 2) - See entry/exit metrics at a glance
+        3. **Analyze Projections** (Tab 3) - Review financial statements and debt schedule
+        4. **Check Returns** (Tab 4) - Exit analysis and return metrics
+        5. **Run Sensitivity** (Tab 5) - Test various exit multiples vs 40% target IRR
+        
+        """)
+    
+    with col2:
+        st.info(f"""
+        ### **Quick Reference**
+        
+        **Typical Deal Profile:**
+        - Entry: 4.0x EBITDA
+        - Exit: 10.0x EBITDA
+        - Leverage: 2.4x → 1.3x
+        - IRR: 45-50%
+        - MOIC: 3.0x - 4.0x
+        
+        **This Model:**
+        - Configurable parameters
+        - Real-time calculations
+        - Constraint logic (liquidity cap)
+        - 40% IRR benchmark
+        """)
 
 # TAB 1: INPUTS
 with tab1:
