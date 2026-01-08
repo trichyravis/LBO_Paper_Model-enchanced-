@@ -1,28 +1,11 @@
 
 [client]
 showErrorDetails = true
-toolbarMode = "developer"
 
 [logger]
 level = "info"
-
-[theme]
-primaryColor = "#003366"
-backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#f0f2f6"
-textColor = "#333333"
-font = "sans serif"
 
 [server]
 headless = true
 port = 8501
 runOnSave = true
-maxUploadSize = 200
-enableCORS = true
-enableXsrfProtection = true
-
-[browser]
-gatherUsageStats = false
-
-[python]
-version = "3.9"
